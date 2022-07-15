@@ -1,11 +1,13 @@
 import classes from "./LoginRegister.module.css"
 import { useRef } from "react"
+
 const Login = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
     return (
-        <section className={classes.auth}>
+        <div className={classes.auth}>
           <form>
+            <h1>Login</h1>
             <div className={classes.control}>
               <label htmlFor="email">Your Email</label>
               <input ref={emailRef} type="email" id="email" required />
@@ -15,7 +17,7 @@ const Login = () => {
               <input type="password" ref={passwordRef} id="password" required />
             </div>
             </form>
-        </section>
+        </div>
     )
             }
 
