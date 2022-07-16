@@ -1,32 +1,79 @@
 import classes from "./LoginRegister.module.css"
-import { useRef } from "react"
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react"
+import { Link } from "react-router-dom";
 
 
 const Register = () => {
-    const emailRef = useRef()
-    const usernameRef = useRef()
-    const passwordRef = useRef()
-    const confirmPasswordRef = useRef()
+    const [user, setUser] = useState({
+        email: "", 
+        username: "",
+        password: "",
+        confirmPassword: ""
+    })
+
+    const inputHandler = (e) => {
+    e.preventDefault()
+    setUser({
+        ...user, 
+        [e.target.name] : e.target.value
+    })
+    }
+
+    const submitHandler = (e) => {
+    e.preventDefault()
+    console.log(user)
+    }
+
     return (
         <section className={classes.auth}>
-          <form>
+          <form onSubmit={submitHandler}>
             <h1>Register</h1>
             <div className={classes.control}>
               <label htmlFor="email">Your Email</label>
-              <input ref={emailRef} type="email" id="email" required />
+              <input 
+                type="email" 
+                id="email"
+                name="email"
+                value={user.email}
+                onChange={(event) => {
+                  inputHandler(event);
+                }}
+              />
             </div>
             <div className={classes.control}>
               <label htmlFor="username">Your Username</label>
-              <input ref={usernameRef} type="username" id="username" required />
+              <input 
+                type="username" 
+                id="username"
+                name="username"
+                value={user.username}
+                onChange={(event => {
+                    inputHandler(event)
+                })}
+              />
             </div>
             <div className={classes.control}>
               <label htmlFor="password">Your Password</label>
-              <input type="password" ref={passwordRef} id="password" required />
+              <input 
+                type="password" 
+                id="password" 
+                name="password"
+                value={user.password}
+                onChange={(event) => {
+                  inputHandler(event);
+                }}
+              />
             </div>
             <div className={classes.control}>
               <label htmlFor="confirmPassword">Confirm Password</label>
-              <input type="confirmPassword" ref={confirmPasswordRef} id="confirmPassword" required />
+              <input 
+                type="password" 
+                id="confirmPassword"
+                name="confirmPassword"
+                value={user.confirmPassword}
+                onChange={(event) => {
+                  inputHandler(event);
+                }}/>
             </div>
             <button className={classes.btn}>Login</button>
             <Link to="/login" style={{color: "white", margin: "20px 0"}}>Already have account? Login</Link>
