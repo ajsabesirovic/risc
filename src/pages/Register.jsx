@@ -1,5 +1,7 @@
 import classes from "./LoginRegister.module.css"
 import { useRef } from "react"
+import { Link, useNavigate } from "react-router-dom";
+
 
 const Register = () => {
     const emailRef = useRef()
@@ -26,6 +28,8 @@ const Register = () => {
               <label htmlFor="confirmPassword">Confirm Password</label>
               <input type="confirmPassword" ref={confirmPasswordRef} id="confirmPassword" required />
             </div>
+            <button className={classes.btn}>Login</button>
+            <Link to="/login" style={{color: "white", margin: "20px 0"}}>Already have account? Login</Link>
             </form>
         </section>
     )
